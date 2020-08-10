@@ -1,38 +1,133 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: rgba(180, 180, 180);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.upper_letter {
+  text-transform: capitalize;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card_box {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  margin: 1rem 2rem;
+  position: relative;
+}
+
+.card {
   display: flex;
-  flex-direction: column;
+  position: relative;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-radius: 2px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  transform: perspective(1000px) rotateY(var(--rotate_y, 0))
+    translateY(var(--translate_y, 0));
+  transform-style: preserve-3d;
+  transition: 150ms;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.card:hover {
+  --translate_y: -2px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.6);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card.flip {
+  --rotate_y: 180deg;
+}
+
+.card.correct {
+  color: green;
+}
+.card.incorrect {
+  color: red;
+}
+
+.card.front {
+  left: 0;
+}
+.check_option {
+  margin-right: 0.25rem;
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  padding: 1rem;
+  backface-visibility: hidden;
+}
+.card .back {
+  transform: rotateY(180deg);
+}
+
+.options {
+  margin-top: 0.5rem;
+}
+.option {
+  margin-top: 0.25rem;
+  color: rgba(220, 220, 220);
+  font-size: 0.75rem;
+}
+.option:first-child {
+  margin-top: 0;
+}
+.loader {
+  width: 5rem;
+  position: absolute;
+  left: calc(50% - 2.5rem);
+  top: 20vh;
+}
+/* header */
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    ". title ."
+    "category amount difficulty"
+    ". submit .";
+  justify-items: center;
+  background-color: rgb(240, 240, 240);
+  border-bottom: 2px solid grey;
+  gap: 0.5rem;
+}
+.header label {
+  margin-right: 0.2rem;
+}
+.header h1 {
+  grid-area: title;
+  color: rgba(50, 50, 50);
+}
+#category_wrapper {
+  grid-area: category;
+}
+#amount_wrapper {
+  grid-area: amount;
+}
+#difficulty_wrapper {
+  grid-area: difficulty;
+}
+.header button {
+  grid-area: submit;
+  margin-bottom: 5px;
+  cursor: pointer;
+  background-color: #66caf2;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  font-weight: bold;
+  transition: 200ms;
+}
+.header button:hover {
+  background-color: #63bbf2;
 }
