@@ -99,6 +99,7 @@ body {
   background-color: rgb(240, 240, 240);
   border-bottom: 2px solid grey;
   gap: 0.5rem;
+  align-items: center;
 }
 .header label {
   margin-right: 0.2rem;
